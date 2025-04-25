@@ -58,17 +58,21 @@ const activarSonido = () => {
   audio.play();
 }
 
-//callback cuando termina de leer el codigo QR
 qrcode.callback = (respuesta) => {
   if (respuesta) {
-    //console.log(respuesta);
-    Swal.fire(respuesta)
     activarSonido();
-    //encenderCamara();    
-    cerrarCamara();    
+    cerrarCamara();
 
+    // Verifica si la respuesta es una URL
+    if (respuesta.startsWith("http://") || respuesta.startsWith("https://")) {
+      window.location.href = respuesta; // Redirige a la URL
+    } else {
+      // Si no es una URL, muestra la respuesta
+      Swal.fire(respuesta);
+    }
   }
 };
+
 //evento para mostrar la camara sin el boton 
 window.addEventListener('load', (e) => {
   encenderCamara();
