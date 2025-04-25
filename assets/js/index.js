@@ -62,14 +62,7 @@ qrcode.callback = (respuesta) => {
   if (respuesta) {
     activarSonido();
     cerrarCamara();
-
-    // Verifica si la respuesta es una URL
-    if (respuesta.startsWith("http://") || respuesta.startsWith("https://")) {
-      window.location.href = respuesta; // Redirige a la URL
-    } else {
-      // Si no es una URL, muestra la respuesta
-      Swal.fire(respuesta);
-    }
+    window.location.href = respuesta; // Redirige directamente al contenido escaneado
   }
 };
 
